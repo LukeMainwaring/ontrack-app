@@ -11,7 +11,7 @@ export const signin = ({ email, password }) => async dispatch => {
   try {
     const response = await ontrackApi.post('/signin', { email, password });
     await AsyncStorage.setItem('token', response.data.token);
-    dispatch({ type: SIGNIN, payload: response.data.token });
+    dispatch({ type: SIGNIN, payload: response.data });
     navigate('Home');
   } catch (err) {
     const errorMessage = err.response.data.error;

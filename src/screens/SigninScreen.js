@@ -12,7 +12,7 @@ const SigninScreen = ({ errorMessage, clearErrorMessage }) => {
     <View style={styles.container}>
       <NavigationEvents onWillBlur={clearErrorMessage} />
       <Image
-        source={require('../../assets/OnTrack-login.png')}
+        source={require('../../assets/ontrack-login.png')}
         style={styles.image}
       />
       <SigninForm errorMessage={errorMessage} />
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#4EC6D6'
+    backgroundColor: '#F4976C'
   },
   image: {
     flex: 1,

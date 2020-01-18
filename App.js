@@ -7,6 +7,7 @@ import { ThemeProvider } from 'react-native-elements';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import AccountScreen from './src/screens/AccountScreen';
+import ActivityScreen from './src/screens/ActivityScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
 import HomeScreen from './src/screens/HomeScreen';
@@ -18,7 +19,8 @@ const store = configureStore();
 
 const theme = {
   colors: {
-    primary: '#4EC6D6'
+    primary: '#303C6C',
+    secondary: '#F4976C'
   }
 };
 
@@ -30,10 +32,19 @@ const BottomTabRouteConfigs = {
       tabBarIcon: <MaterialIcons name='home' style={{ fontSize: 28 }} />
     }
   },
+  Activity: {
+    screen: ActivityScreen,
+    navigationOptions: {
+      tabBarLabel: 'Activity',
+      tabBarIcon: (
+        <MaterialIcons name='notifications' style={{ fontSize: 28 }} />
+      )
+    }
+  },
   Account: {
     screen: AccountScreen,
     navigationOptions: {
-      tabBarLabel: 'Account',
+      tabBarLabel: 'Profile',
       tabBarIcon: <MaterialIcons name='person' style={{ fontSize: 28 }} />
     }
   }

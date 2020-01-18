@@ -3,12 +3,13 @@ import { StyleSheet, View } from 'react-native';
 import { Text, Button, Input, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withNavigation } from 'react-navigation';
 
 import { signin } from '../actions/auth';
 import Spacer from './Spacer';
 import NavLink from './NavLink';
 
-const SigninForm = ({ errorMessage, signin }) => {
+const SigninForm = ({ errorMessage, navigation, signin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -57,6 +58,9 @@ const SigninForm = ({ errorMessage, signin }) => {
           <Text style={styles.errorMessage}>{errorMessage}</Text>
         ) : null}
         <Spacer>
+          <NavLink redirectText='Forgot password?' routeName='Signup' />
+        </Spacer>
+        <Spacer>
           <Button
             buttonStyle={styles.buttonStyle}
             title='Login'
@@ -64,13 +68,25 @@ const SigninForm = ({ errorMessage, signin }) => {
             onPress={() => signin({ email, password })}
           />
         </Spacer>
-        <NavLink redirectText='New user' routeName='Signup' />
+        <Button
+          buttonStyle={styles.newButtonStyle}
+          title='New User'
+          titleStyle={styles.newButtonTitleStyle}
+          onPress={() => navigation.navigate('Signup')}
+        />
+        {/* <NavLink redirectText='New user link...' routeName='Signup' /> */}
       </Card>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  buttonStyle: {
+    alignSelf: 'center',
+    borderRadius: 10,
+    marginTop: 10,
+    width: 275
+  },
   buttonTitleStyle: {
     fontSize: 20,
     fontWeight: 'bold'
@@ -83,25 +99,32 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginTop: 25
   },
-  formStyle: {
-    marginBottom: 200
-  },
   errorMessage: {
     fontSize: 16,
     color: 'red',
     marginLeft: 15,
     marginTop: 15
   },
-  buttonStyle: {
-    alignSelf: 'center',
-    borderRadius: 10,
-    marginTop: 10,
-    width: 275
+  formStyle: {
+    marginBottom: 100
   },
   inputStyle: {
     alignSelf: 'center',
     marginTop: 15,
     width: 325
+  },
+  newButtonStyle: {
+    alignSelf: 'center',
+    borderRadius: 10,
+    marginBottom: 20,
+    marginTop: 10,
+    width: 275,
+    backgroundColor: '#DEEEF2'
+  },
+  newButtonTitleStyle: {
+    color: '#303C6C',
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 });
 
@@ -121,4 +144,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SigninForm);
+)(withNavigation(SigninForm));
