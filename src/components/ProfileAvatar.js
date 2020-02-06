@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Avatar } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getUser } from '../actions/user';
 
-const ProfileAvatar = ({}) => {
+const ProfileAvatar = ({ user, userId, getUser }) => {
+  useEffect(() => {
+    getUser(userId);
+  }, [userId]);
+
   return (
     <View style={styles.container}>
       <Avatar
@@ -12,7 +19,7 @@ const ProfileAvatar = ({}) => {
         }}
         size='xlarge'
       />
-      <Text style={styles.name}>Luke Mainwaring</Text>
+      <Text style={styles.name}>{`${user.firstName} ${user.lastName}`}</Text>
     </View>
   );
 };
@@ -27,4 +34,20 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ProfileAvatar;
+const mapStateToProps = ({ auth, user }) => {
+  return { userId: auth.userId, user };
+};
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    {
+      getUser
+    },
+    dispatch
+  );
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileAvatar);

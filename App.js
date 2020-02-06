@@ -10,6 +10,7 @@ import AccountScreen from './src/screens/AccountScreen';
 import ActivityScreen from './src/screens/ActivityScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
+import LoanInputScreen from './src/screens/LoanInputScreen';
 import HomeScreen from './src/screens/HomeScreen';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 import { setNavigator } from './src/navigationRef';
@@ -55,6 +56,9 @@ const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
     Signin: SigninScreen,
     Signup: SignupScreen
+  }),
+  loanInputFlow: createStackNavigator({
+    LoanInput: LoanInputScreen
   }),
   mainFlow: createBottomTabNavigator(BottomTabRouteConfigs)
 });

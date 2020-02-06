@@ -16,10 +16,11 @@ const NavLink = ({ navigation, redirectText, routeName }) => {
 
 const styles = StyleSheet.create({
   link: {
+    alignSelf: 'center',
     color: '#989898',
     fontSize: 16,
     fontWeight: 'bold',
-    alignSelf: 'center'
+    textDecorationLine: 'underline'
   }
 });
 

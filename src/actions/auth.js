@@ -36,8 +36,8 @@ export const signup = ({
       password
     });
     await AsyncStorage.setItem('token', response.data.token);
-    dispatch({ type: SIGNIN, payload: response.data.token });
-    navigate('Home');
+    dispatch({ type: SIGNIN, payload: response.data });
+    navigate('LoanInput');
   } catch (err) {
     const errorMessage = err.response.data.error;
     dispatch({
@@ -58,6 +58,7 @@ export const tryLocalSignin = () => async dispatch => {
   if (token) {
     dispatch({ type: SIGNIN, payload: token });
     navigate('Home');
+    // navigate('LoanInput'); // Comment out when done testing
   } else {
     navigate('Signin');
   }

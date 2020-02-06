@@ -24,7 +24,7 @@ const SigninForm = ({ errorMessage, navigation, signin }) => {
           containerStyle={styles.inputStyle}
           leftIcon={{
             type: 'material-icons',
-            name: 'person',
+            name: 'email',
             size: 40,
             color: '#BCBCBC'
           }}

@@ -1,17 +1,37 @@
 import axios from 'axios';
+import { AsyncStorage } from 'react-native';
 
-let apiUrl = '';
+let instance = axios.create({
+  baseURL: ''
+});
+
 if (process.env.NODE_ENV === 'development') {
-  apiUrl = 'http://4908feea.ngrok.io';
+  instance = axios.create({
+    baseURL: 'http://cedb7272.ngrok.io'
+  });
 } else {
   // Production server
-  apiUrl =
-    'http://ontrackserver-env.pikgvbwvcg.us-east-1.elasticbeanstalk.com/';
+  instance = axios.create({
+    baseURL:
+      'http://ontrackserver-env.pikgvbwvcg.us-east-1.elasticbeanstalk.com/'
+  });
 }
 
 // Uncomment this to connect local app to production server
 // apiUrl = 'http://ontrackserver-env.pikgvbwvcg.us-east-1.elasticbeanstalk.com/';
 
-export default axios.create({
-  baseURL: apiUrl
-});
+// Authenticate user
+instance.interceptors.request.use(
+  async config => {
+    const token = await AsyncStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = 'Bearer ' + token;
+    }
+    return config;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+export { instance as default };
