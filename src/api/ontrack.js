@@ -7,7 +7,7 @@ let instance = axios.create({
 
 if (process.env.NODE_ENV === 'development') {
   instance = axios.create({
-    baseURL: 'http://cedb7272.ngrok.io'
+    baseURL: 'http://5944ae0b.ngrok.io'
   });
 } else {
   // Production server

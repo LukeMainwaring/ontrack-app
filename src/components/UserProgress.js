@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   progressList: {
     alignSelf: 'center',
     marginBottom: 30,
-    marginTop: 100
+    marginTop: 25
   }
 });
 

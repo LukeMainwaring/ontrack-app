@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Header } from 'react-native-elements';
 
-const LoanInputDetail = ({ title }) => {
+const LoanInputDetail = () => {
   return (
     <Header
       containerStyle={styles.headerContainer}
